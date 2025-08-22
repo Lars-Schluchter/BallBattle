@@ -1,0 +1,43 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6j4p6xeaxntk"]
+
+[ext_resource type="Script" uid="uid://ckmglamjdkmkk" path="res://Scripts/Multiplayer/main_menu.gd" id="1_28flt"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = -6.0
+offset_right = 1.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_28flt")
+
+[node name="VSplitContainer" type="VSplitContainer" parent="."]
+layout_mode = 0
+offset_left = -142.0
+offset_top = -127.0
+offset_right = 143.0
+offset_bottom = 129.0
+collapsed = true
+dragging_enabled = false
+dragger_visibility = 1
+
+[node name="Button" type="Button" parent="VSplitContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 50
+text = "Join"
+
+[node name="Button2" type="Button" parent="VSplitContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 50
+text = "Host"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[connection signal="pressed" from="VSplitContainer/Button" to="." method="_on_joinButton_pressed"]
+[connection signal="pressed" from="VSplitContainer/Button2" to="." method="_on_hostButton_pressed"]

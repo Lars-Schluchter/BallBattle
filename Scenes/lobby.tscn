@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4xqyq7n8eaue"]
+
+[ext_resource type="Script" uid="uid://ckmglamjdkmkk" path="res://Scripts/Multiplayer/main_menu.gd" id="1_nvaej"]
+
+[node name="Lobby" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nvaej")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 547.0
+offset_top = 208.0
+offset_right = 615.0
+offset_bottom = 263.0
+alignment = 1
+
+[node name="JoinButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Join"
+
+[node name="AddressEntry" type="LineEdit" parent="VBoxContainer"]
+layout_mode = 2
+placeholder_text = "IP..."
+
+[node name="HostButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Host"
+
+[connection signal="pressed" from="VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]

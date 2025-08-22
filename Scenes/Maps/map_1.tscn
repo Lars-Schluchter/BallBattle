@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://bm1logi1erc5x"]
+
+[ext_resource type="PackedScene" uid="uid://kltr6a8hur12" path="res://Scenes/Assets/wall_outside.tscn" id="1_iulhw"]
+[ext_resource type="PackedScene" uid="uid://b33i6et0ll83w" path="res://Scenes/Assets/floor.tscn" id="2_wlapn"]
+[ext_resource type="PackedScene" uid="uid://bfdux5t1nhsre" path="res://Scenes/Spawn_point.tscn" id="3_rny4e"]
+[ext_resource type="Script" uid="uid://tv6iqu1qh7mk" path="res://Scripts/Multiplayer/multiplayer_spawner.gd" id="5_m6jp7"]
+[ext_resource type="PackedScene" uid="uid://cekwft8x1a6q5" path="res://Scenes/Assets/player.tscn" id="6_cphd2"]
+
+[node name="Map_1" type="Node2D"]
+
+[node name="WallOutsideLeft" parent="." instance=ExtResource("1_iulhw")]
+
+[node name="WallOutsideTop" parent="." instance=ExtResource("1_iulhw")]
+position = Vector2(1040, 0)
+rotation = 1.5708
+
+[node name="WallOutsideRight" parent="." instance=ExtResource("1_iulhw")]
+position = Vector2(1020, 20)
+
+[node name="WallOutsideBottom" parent="." instance=ExtResource("1_iulhw")]
+position = Vector2(1020, 1020)
+rotation = 1.5708
+
+[node name="Floor" parent="." instance=ExtResource("2_wlapn")]
+position = Vector2(20, 20)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(520, 520)
+zoom = Vector2(0.6, 0.6)
+
+[node name="SpawnPoint" parent="." instance=ExtResource("3_rny4e")]
+position = Vector2(136, 129)
+
+[node name="SpawnPoint2" parent="." instance=ExtResource("3_rny4e")]
+position = Vector2(918, 933)
+
+[node name="SpawnPoint3" parent="." instance=ExtResource("3_rny4e")]
+position = Vector2(926, 119)
+
+[node name="SpawnPoint4" parent="." instance=ExtResource("3_rny4e")]
+position = Vector2(145, 913)
+
+[node name="PlayerSpawnManager" type="Node" parent="."]
+script = ExtResource("5_m6jp7")
+network_player = ExtResource("6_cphd2")
