@@ -15,29 +15,35 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_28flt")
 
-[node name="VSplitContainer" type="VSplitContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = -142.0
-offset_top = -127.0
-offset_right = 143.0
-offset_bottom = 129.0
-collapsed = true
-dragging_enabled = false
-dragger_visibility = 1
+offset_left = 531.0
+offset_top = 213.0
+offset_right = 651.0
+offset_bottom = 433.0
 
-[node name="Button" type="Button" parent="VSplitContainer"]
+[node name="JoinButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 50
 text = "Join"
 
-[node name="Button2" type="Button" parent="VSplitContainer"]
+[node name="HostButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 50
 text = "Host"
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="OnlineID" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Loading..."
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[connection signal="pressed" from="VSplitContainer/Button" to="." method="_on_joinButton_pressed"]
-[connection signal="pressed" from="VSplitContainer/Button2" to="." method="_on_hostButton_pressed"]
+[node name="HostOnlineID" type="LineEdit" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[connection signal="pressed" from="VBoxContainer/JoinButton" to="." method="_on_joinButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/HostButton" to="." method="_on_hostButton_pressed"]

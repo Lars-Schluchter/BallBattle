@@ -7,6 +7,7 @@ extends CharacterBody2D
 @export var max_bounces = 2
 
 var bounces = 0
+var shooter = null
 
 func _ready():
 	velocity = Vector2(speed, 0).rotated(rotation)
@@ -22,7 +23,7 @@ func _physics_process(delta):
 		var collider = collision.get_collider()
 		
 		# Check if the object we hit is a player
-		if collider.has_method("handle_hit"):
+		if collider.is_in_group("player"):
 			collider.handle_hit()
 			queue_free() # Destroy the ball
 		else:

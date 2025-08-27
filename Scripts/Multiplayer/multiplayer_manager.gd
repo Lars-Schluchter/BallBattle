@@ -50,14 +50,3 @@ func _del_player(id: int):
 	if not _players_spawn_node.has_node(str(id)):
 		return
 	_players_spawn_node.get_node(str(id)).queue_free()
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	

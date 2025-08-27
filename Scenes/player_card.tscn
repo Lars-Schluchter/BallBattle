@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqfoctslaft5p"]
+
+[ext_resource type="Texture2D" uid="uid://b521b2j7wfvgw" path="res://icon.svg" id="1_1jn11"]
+
+[node name="PlayerCard" type="VBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_1jn11")
+
+[node name="Player" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Player"
