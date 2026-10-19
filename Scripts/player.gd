@@ -21,9 +21,9 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		sync_position = global_position
 		
-		if Input.is_action_just_pressed("ui_accept"):
-			var shoot_direction = direction if direction != Vector2.ZERO else Vector2.RIGHT
-			request_shoot.rpc_id(1, global_position, shoot_direction)
+		if Input.is_action_just_pressed("ui_accept") or Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+			var mouse_pos = get_global_mouse_position()
+			request_shoot.rpc_id(1, global_position, mouse_pos)
 	else:
 		global_position = sync_position
 
@@ -34,16 +34,20 @@ func _process(delta: float) -> void:
 		visuals.global_position = visuals.global_position.lerp(global_position, 15.0 * delta)
 
 @rpc("any_peer", "call_local", "reliable")
-func request_shoot(start_pos: Vector2, dir: Vector2) -> void:
+func request_shoot(start_pos: Vector2, target_mouse_pos: Vector2) -> void:
 	if not multiplayer.is_server():
 		return
+		
 	var ball = BALL_SCENE.instantiate()
 	ball.global_position = start_pos
-	ball.velocity = dir.normalized()
 	
-	if ball.has_method("set_shooter"):
-		ball.set_shooter(multiplayer.get_remote_sender_id())
-	elif "shooter_id" in ball:
-		ball.shooter_id = multiplayer.get_remote_sender_id()
+	var shoot_direction = (target_mouse_pos - start_pos).normalized()
+	
+	if shoot_direction == Vector2.ZERO:
+		shoot_direction = Vector2.RIGHT
 		
+	ball.velocity = shoot_direction
+	
+	ball.shooter_id = multiplayer.get_remote_sender_id()
+	
 	get_parent().add_child(ball, true)
