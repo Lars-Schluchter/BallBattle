@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://te5ity7gg4pl"]
+
+[ext_resource type="Script" uid="uid://drmi0qkwv6mgl" path="res://Scripts/network_connection.gd" id="1_nudkc"]
+
+[node name="NetworkMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_nudkc")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 531.0
+offset_top = 213.0
+offset_right = 651.0
+offset_bottom = 433.0
+
+[node name="JoinButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 50
+text = "Join"
+
+[node name="HostButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 50
+text = "Host"

@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://fqykrhr3gwbw"]
-
-[ext_resource type="Script" uid="uid://bx44gauai8rp0" path="res://Scripts/Multiplayer/player_spawner_manager.gd" id="1_41fpu"]
-
-[node name="PlayerSpawnerManager" type="Node"]
-script = ExtResource("1_41fpu")

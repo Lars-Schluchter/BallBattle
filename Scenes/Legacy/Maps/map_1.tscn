@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3 uid="uid://bm1logi1erc5x"]
+
+[ext_resource type="PackedScene" uid="uid://kltr6a8hur12" path="res://Scenes/Prefab/wall_outside.tscn" id="1_elhs4"]
+[ext_resource type="PackedScene" uid="uid://b33i6et0ll83w" path="res://Scenes/Prefab/floor.tscn" id="2_qv034"]
+[ext_resource type="PackedScene" uid="uid://bfdux5t1nhsre" path="res://Scenes/Legacy/Spawn_point.tscn" id="3_r300l"]
+
+[node name="Map_1" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(520, 520)
+zoom = Vector2(0.6, 0.6)
+
+[node name="Environment" type="Node" parent="."]
+
+[node name="WallOutsideLeft" parent="Environment" instance=ExtResource("1_elhs4")]
+
+[node name="WallOutsideTop" parent="Environment" instance=ExtResource("1_elhs4")]
+position = Vector2(1040, 0)
+rotation = 1.5708
+
+[node name="WallOutsideRight" parent="Environment" instance=ExtResource("1_elhs4")]
+position = Vector2(1020, 20)
+
+[node name="WallOutsideBottom" parent="Environment" instance=ExtResource("1_elhs4")]
+position = Vector2(1020, 1020)
+rotation = 1.5708
+
+[node name="Floor" parent="Environment" instance=ExtResource("2_qv034")]
+position = Vector2(20, 20)
+
+[node name="Spawnpoints" type="Node" parent="."]
+
+[node name="SpawnPoint" parent="Spawnpoints" instance=ExtResource("3_r300l")]
+position = Vector2(136, 129)
+
+[node name="SpawnPoint2" parent="Spawnpoints" instance=ExtResource("3_r300l")]
+position = Vector2(918, 933)
+
+[node name="SpawnPoint3" parent="Spawnpoints" instance=ExtResource("3_r300l")]
+position = Vector2(926, 119)
+
+[node name="SpawnPoint4" parent="Spawnpoints" instance=ExtResource("3_r300l")]
+position = Vector2(145, 913)

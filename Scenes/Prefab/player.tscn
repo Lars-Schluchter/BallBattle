@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://bycf7y7gkxs2b"]
+
+[ext_resource type="Script" uid="uid://dn6yccun2gnam" path="res://Scripts/player.gd" id="1_elc2j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7bkq0"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_3s612"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_76v84"]
+properties/0/path = NodePath(".:sync_position")
+properties/0/spawn = true
+properties/0/replication_mode = 2
+
+[node name="Player" type="CharacterBody2D" groups=["players"]]
+platform_floor_layers = 4294901760
+script = ExtResource("1_elc2j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_7bkq0")
+debug_color = Color(1, 1, 1, 0)
+
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite2D" parent="Visuals"]
+modulate = Color(0.972492, 0.472725, 0, 0.690196)
+position = Vector2(-7.15256e-07, -5.06639e-07)
+scale = Vector2(38, 38)
+texture = SubResource("CanvasTexture_3s612")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_76v84")

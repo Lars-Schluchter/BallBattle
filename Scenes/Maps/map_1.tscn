@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bm1logi1erc5x"]
+[gd_scene load_steps=5 format=3 uid="uid://ct6r012uj6pk8"]
 
-[ext_resource type="PackedScene" uid="uid://kltr6a8hur12" path="res://Scenes/Assets/wall_outside.tscn" id="1_iulhw"]
-[ext_resource type="PackedScene" uid="uid://b33i6et0ll83w" path="res://Scenes/Assets/floor.tscn" id="2_wlapn"]
-[ext_resource type="PackedScene" uid="uid://bfdux5t1nhsre" path="res://Scenes/Spawn_point.tscn" id="3_rny4e"]
+[ext_resource type="PackedScene" uid="uid://kltr6a8hur12" path="res://Scenes/Prefab/wall_outside.tscn" id="1_hgg1t"]
+[ext_resource type="PackedScene" uid="uid://b33i6et0ll83w" path="res://Scenes/Prefab/floor.tscn" id="2_b0wv2"]
+[ext_resource type="PackedScene" uid="uid://bfdux5t1nhsre" path="res://Scenes/Legacy/Spawn_point.tscn" id="3_ecpad"]
+[ext_resource type="PackedScene" uid="uid://te5ity7gg4pl" path="res://Scenes/network_menu.tscn" id="4_3k4nc"]
 
 [node name="Map_1" type="Node2D"]
 
@@ -10,34 +11,46 @@
 position = Vector2(520, 520)
 zoom = Vector2(0.6, 0.6)
 
-[node name="Environment" type="Node" parent="."]
+[node name="Players" type="Node2D" parent="."]
 
-[node name="WallOutsideLeft" parent="Environment" instance=ExtResource("1_iulhw")]
+[node name="Environment" type="Node2D" parent="."]
 
-[node name="WallOutsideTop" parent="Environment" instance=ExtResource("1_iulhw")]
+[node name="WallOutsideLeft" parent="Environment" instance=ExtResource("1_hgg1t")]
+
+[node name="WallOutsideTop" parent="Environment" instance=ExtResource("1_hgg1t")]
 position = Vector2(1040, 0)
 rotation = 1.5708
 
-[node name="WallOutsideRight" parent="Environment" instance=ExtResource("1_iulhw")]
+[node name="WallOutsideRight" parent="Environment" instance=ExtResource("1_hgg1t")]
 position = Vector2(1020, 20)
 
-[node name="WallOutsideBottom" parent="Environment" instance=ExtResource("1_iulhw")]
+[node name="WallOutsideBottom" parent="Environment" instance=ExtResource("1_hgg1t")]
 position = Vector2(1020, 1020)
 rotation = 1.5708
 
-[node name="Floor" parent="Environment" instance=ExtResource("2_wlapn")]
+[node name="Floor" parent="Environment" instance=ExtResource("2_b0wv2")]
 position = Vector2(20, 20)
 
 [node name="Spawnpoints" type="Node" parent="."]
 
-[node name="SpawnPoint" parent="Spawnpoints" instance=ExtResource("3_rny4e")]
+[node name="SpawnPoint" parent="Spawnpoints" instance=ExtResource("3_ecpad")]
 position = Vector2(136, 129)
 
-[node name="SpawnPoint2" parent="Spawnpoints" instance=ExtResource("3_rny4e")]
+[node name="SpawnPoint2" parent="Spawnpoints" instance=ExtResource("3_ecpad")]
 position = Vector2(918, 933)
 
-[node name="SpawnPoint3" parent="Spawnpoints" instance=ExtResource("3_rny4e")]
+[node name="SpawnPoint3" parent="Spawnpoints" instance=ExtResource("3_ecpad")]
 position = Vector2(926, 119)
 
-[node name="SpawnPoint4" parent="Spawnpoints" instance=ExtResource("3_rny4e")]
+[node name="SpawnPoint4" parent="Spawnpoints" instance=ExtResource("3_ecpad")]
 position = Vector2(145, 913)
+
+[node name="NetworkMenu" parent="." instance=ExtResource("4_3k4nc")]
+offset_left = -71.0
+offset_top = 197.0
+offset_right = -71.0
+offset_bottom = 197.0
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("uid://bycf7y7gkxs2b", "uid://b5y66vmkaas7u")
+spawn_path = NodePath("../Players")

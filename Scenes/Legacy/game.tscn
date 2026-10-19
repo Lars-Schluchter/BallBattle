@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://dela6nxrbkape"]
+
+[ext_resource type="Script" uid="uid://dwet8dwkbrq76" path="res://Scenes/Legacy/game_manager.gd" id="1_6j8qt"]
+[ext_resource type="PackedScene" uid="uid://cekwft8x1a6q5" path="res://Scenes/Legacy/Assets/player.tscn" id="2_pynyf"]
+[ext_resource type="Script" uid="uid://fejblah1d2ks" path="res://Scripts/Legacy/ui.gd" id="3_1qjvw"]
+[ext_resource type="PackedScene" uid="uid://c6j4p6xeaxntk" path="res://Scenes/Legacy/main_menu.tscn" id="4_7wyd2"]
+[ext_resource type="PackedScene" uid="uid://b4xqyq7n8eaue" path="res://Scenes/Legacy/lobby.tscn" id="5_einsq"]
+
+[node name="Game" type="Node" node_paths=PackedStringArray("player_spawner")]
+script = ExtResource("1_6j8qt")
+player_scene = ExtResource("2_pynyf")
+player_spawner = NodePath("PlayerContainer/PlayerSpawner")
+
+[node name="SceneContainer" type="Node" parent="."]
+
+[node name="PlayerContainer" type="Node" parent="."]
+
+[node name="PlayerSpawner" type="MultiplayerSpawner" parent="PlayerContainer"]
+_spawnable_scenes = PackedStringArray("uid://cekwft8x1a6q5")
+spawn_path = NodePath("..")
+
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("3_1qjvw")
+
+[node name="MainMenu" parent="UI" instance=ExtResource("4_7wyd2")]
+
+[node name="Lobby" parent="UI" instance=ExtResource("5_einsq")]
+visible = false
+
+[connection signal="quit_game" from="UI/Lobby" to="." method="_on_lobby_quit_game"]
+[connection signal="quit_game" from="UI/Lobby" to="UI" method="_on_lobby_quit_game"]
+[connection signal="started_game" from="UI/Lobby" to="." method="_on_lobby_started_game"]
+[connection signal="started_game" from="UI/Lobby" to="UI" method="_on_lobby_started_game"]
+[connection signal="visibility_changed" from="UI/Lobby" to="UI/Lobby" method="_on_visibility_changed"]

@@ -11,13 +11,9 @@ config_version=5
 [application]
 
 config/name="Headball"
-run/main_scene="uid://dela6nxrbkape"
+run/main_scene="uid://ct6r012uj6pk8"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
-
-[autoload]
-
-NetworkHandler="*res://Scripts/Multiplayer/network_handler.gd"
 
 [editor]
 
@@ -26,7 +22,7 @@ version_control/autoload_on_startup=true
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/nodetunnel/plugin.cfg")
+enabled=PackedStringArray()
 
 [input]
 
