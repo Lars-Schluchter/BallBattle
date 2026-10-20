@@ -11,9 +11,13 @@ func _enter_tree() -> void:
 	$MultiplayerSynchronizer.set_multiplayer_authority(name.to_int())
 
 func _ready() -> void:
+	
+	
 	if not is_multiplayer_authority():
 		visuals.top_level = true
-
+	else:
+		request_spawn.rpc_id(1)
+		
 func _physics_process(delta: float) -> void:
 	if is_multiplayer_authority():
 		var direction := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
@@ -51,3 +55,31 @@ func request_shoot(start_pos: Vector2, target_mouse_pos: Vector2) -> void:
 	ball.shooter_id = multiplayer.get_remote_sender_id()
 	
 	get_parent().add_child(ball, true)
+
+@rpc("any_peer", "call_local", "reliable")
+func request_spawn() -> void:
+	if not multiplayer.is_server():
+		return
+	var sender := multiplayer.get_remote_sender_id()
+	if sender == 0:
+		sender = 1
+	if sender != name.to_int():
+		return
+
+	var pos := SpawnSelector.pick(get_tree(), self)
+	_apply_spawn(pos)
+	if sender != 1:
+		teleport_to.rpc_id(sender, pos)
+
+@rpc("any_peer", "reliable")
+func teleport_to(pos: Vector2) -> void:
+	if multiplayer.get_remote_sender_id() != 1:
+		return
+	_apply_spawn(pos)
+
+func _apply_spawn(pos: Vector2) -> void:
+	global_position = pos
+	sync_position = pos
+	velocity = Vector2.ZERO
+	if visuals:
+		visuals.global_position = pos

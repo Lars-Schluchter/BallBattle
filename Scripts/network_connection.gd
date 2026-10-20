@@ -52,6 +52,6 @@ func _spawn_player(id: int) -> void:
 		return
 
 	var new_player = PLAYER_SCENE.instantiate()
-	new_player.name = str(id) # Keep this!
+	new_player.name = str(id)
 	
 	players_folder.add_child(new_player)

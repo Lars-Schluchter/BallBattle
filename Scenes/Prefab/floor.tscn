@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://b33i6et0ll83w"]
 
 [node name="Floor" type="Node2D"]
+visibility_layer = 2
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visibility_layer = 2
 offset_right = 1000.0
 offset_bottom = 1000.0
